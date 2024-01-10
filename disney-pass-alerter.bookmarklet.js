@@ -7,12 +7,14 @@
 
   ns.my_turn_alerted = false;
   ns.interval = setInterval(() => {
-    const progress = parseFloat(
-      document
-        .getElementById('MainPart_divProgressbar_Progress')
-        .style.width.replace('%', ''),
+    const progress = Math.round(
+      parseFloat(
+        document
+          .getElementById('MainPart_divProgressbar_Progress')
+          .style.width.replace('%', ''),
+      ),
     );
-    if (progress > (ns.last_progress ?? 0)) {
+    if (progress !== (ns.last_progress ?? 0)) {
       ns.last_progress = progress;
       console.log(`We made ${progress}% progress!`);
       new Audio(
